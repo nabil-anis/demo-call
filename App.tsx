@@ -20,7 +20,17 @@ const PhoneIcon: React.FC = () => (
 const App: React.FC = () => {
 
   const handleDemoCallClick = () => {
-    window.open('https://n8n.srv846726.hstgr.cloud/webhook/ae6c5f05-2d52-4efb-bd97-2467aec5fc30', '_blank');
+    fetch('https://n8n.srv846726.hstgr.cloud/webhook/ae6c5f05-2d52-4efb-bd97-2467aec5fc30')
+      .then(response => {
+        if (response.ok) {
+          console.log('Demo call triggered successfully.');
+        } else {
+          console.error('Failed to trigger demo call:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error triggering demo call:', error);
+      });
   };
 
   return (
